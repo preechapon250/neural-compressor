@@ -1,0 +1,109 @@
+neural_compressor.torch.algorithms.autoround.autoround
+======================================================
+
+.. py:module:: neural_compressor.torch.algorithms.autoround.autoround
+
+.. autoapi-nested-parse::
+
+   AutoRound quantization.
+
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   neural_compressor.torch.algorithms.autoround.autoround.AutoRoundQuantizer
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   neural_compressor.torch.algorithms.autoround.autoround.get_dataloader
+   neural_compressor.torch.algorithms.autoround.autoround.get_mllm_dataloader
+   neural_compressor.torch.algorithms.autoround.autoround.dump_model_op_stats
+
+
+Module Contents
+---------------
+
+.. py:class:: AutoRoundQuantizer(quant_config: Optional[dict] = None, **kwargs)
+
+
+
+   AutoRound Quantizer.
+
+
+.. py:function:: get_dataloader(tokenizer, seqlen, dataset_name='NeelNanda/pile-10k', seed=42, bs=8, nsamples=128)
+
+   Generate a DataLoader for calibration using specified parameters.
+
+   :param tokenizer: The tokenizer to use for tokenization.
+   :type tokenizer: Tokenizer
+   :param seqlen: The exact sequence length. Samples shorter than `seqlen` will be dropped,
+                  and samples longer than `seqlen` will be truncated.
+   :type seqlen: int
+   :param dataset_name: The name of the dataset or datasets separated by commas.
+                        Defaults to "NeelNanda/pile-10k".
+   :type dataset_name: str, optional
+   :param seed: The random seed for reproducibility. Defaults to 42.
+   :type seed: int, optional
+   :param bs: The batch size. Defaults to 8.
+   :type bs: int, optional
+   :param nsamples: The total number of samples to include. Defaults to 128.
+   :type nsamples: int, optional
+
+   :returns: The DataLoader for the calibrated dataset.
+   :rtype: DataLoader
+
+
+.. py:function:: get_mllm_dataloader(model, tokenizer, template=None, processor=None, image_processor=None, dataset=None, extra_data_dir=None, seqlen=None, batch_size=8, split=None, apply_template=None, truncation=None, seed=42, nsamples=128, gradient_accumulate_steps=1, quant_nontext_module=False)
+
+   Generate a DataLoader for calibration using specified parameters.
+
+   :param model: The model to quantize.
+   :type model: Model
+   :param tokenizer: The tokenizer to use for tokenization.
+   :type tokenizer: Tokenizer
+   :param template: The template to specify process for different MLLMs.
+   :type template: Template, optional
+   :param processor: The processor for multi-modal inputs.
+   :type processor: transformers.AutoProcessor, optional
+   :param image_processor: The image processor for multi-modal inputs.
+   :type image_processor: object, optional
+   :param dataset: The name or path of the dataset.
+   :type dataset: str, optional
+   :param extra_data_dir: The path for extra data such as images, audio, or videos.
+   :type extra_data_dir: str, optional
+   :param seqlen: The exact sequence length. Samples shorter than `seqlen` will be dropped,
+                  and samples longer than `seqlen` will be truncated.
+   :type seqlen: int, optional
+   :param batch_size: The batch size. Defaults to 8.
+   :type batch_size: int, optional
+   :param split: The data split to use. Defaults to None.
+   :type split: str, optional
+   :param apply_template: Whether to apply chat template in tokenization.
+   :type apply_template: bool, optional
+   :param truncation: Whether to truncate sequences during tokenization.
+   :type truncation: bool, optional
+   :param seed: The random seed for reproducibility. Defaults to 42.
+   :type seed: int, optional
+   :param nsamples: The total number of samples to include. Defaults to 128.
+   :type nsamples: int, optional
+   :param gradient_accumulate_steps: The number of gradient accumulation steps. Defaults to 1.
+   :type gradient_accumulate_steps: int, optional
+   :param quant_nontext_module: Whether to quantize non-text modules. Defaults to False.
+   :type quant_nontext_module: bool, optional
+
+   :returns: The DataLoader for the calibrated datasets.
+   :rtype: DataLoader
+
+
+.. py:function:: dump_model_op_stats(layer_config)
+
+   Dump quantizable ops stats of model to user.
+
+

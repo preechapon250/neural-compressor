@@ -1,0 +1,22 @@
+neural_compressor.jax
+=====================
+
+.. py:module:: neural_compressor.jax
+
+.. autoapi-nested-parse::
+
+   Intel Neural Compressor JAX API.
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/neural_compressor/jax/algorithms/index
+   /autoapi/neural_compressor/jax/quantization/index
+   /autoapi/neural_compressor/jax/utils/index
+
+
